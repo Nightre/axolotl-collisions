@@ -1,5 +1,5 @@
 import Result from './Result.mjs';
-import SAT    from './SAT.mjs';
+import SAT from './SAT.mjs';
 
 /**
  * The base class for bodies used to detect collisions
@@ -64,6 +64,8 @@ export default class Body {
 
 		/** @private */
 		this._bvh_max_y = 0;
+		/** @public */
+		this.parent = null;
 	}
 
 	/**
@@ -84,7 +86,7 @@ export default class Body {
 	potentials() {
 		const bvh = this._bvh;
 
-		if(bvh === null) {
+		if (bvh === null) {
 			throw new Error('Body does not belong to a collision system');
 		}
 
@@ -97,7 +99,7 @@ export default class Body {
 	remove() {
 		const bvh = this._bvh;
 
-		if(bvh) {
+		if (bvh) {
 			bvh.remove(this, false);
 		}
 	}
